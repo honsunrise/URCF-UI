@@ -1,13 +1,13 @@
-import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { APP_CONFIG } from '../../app.config.constants';
-import { IAppConfig } from '../../app.config.interface';
-import { HttpClient, HttpEvent, HttpEventType, HttpParams } from '@angular/common/http';
-import { UploadToken } from '../domain/uploadToken';
-import { NextChunk } from '../domain/nextChunk';
-import { FileUploader } from './file-uploader.class';
-import { Observer } from 'rxjs/Observer';
-import { Subscription } from 'rxjs/Subscription';
+import {Inject, Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Rx';
+import {APP_CONFIG} from '../../app.config.constants';
+import {IAppConfig} from '../../app.config.interface';
+import {HttpClient, HttpEvent, HttpEventType, HttpParams} from '@angular/common/http';
+import {UploadToken} from '../domain/uploadToken';
+import {NextChunk} from '../domain/nextChunk';
+import {FileUploader} from './file-uploader.class';
+import {Observer} from 'rxjs/Observer';
+import {Subscription} from 'rxjs/Subscription';
 
 @Injectable()
 export class UploadService {

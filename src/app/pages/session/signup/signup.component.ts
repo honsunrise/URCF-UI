@@ -1,10 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from 'ng2-validation';
-import { AccountService } from '../../../service/account/account.service';
-import { AuthGuard } from '../../../auth/auth.guard.service';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
-import { DialogMailConfirmErrorComponent } from '../confirm-mail/confirm-mail.component';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {CustomValidators} from 'ng2-validation';
+import {AccountService} from '../../../service/account/account.service';
+import {AuthGuard} from '../../../auth/auth.guard.service';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {DialogMailConfirmErrorComponent} from '../confirm-mail/confirm-mail.component';
 
 @Component({
   selector: 'dialog-already-registered-error',
@@ -39,10 +39,10 @@ export class SignupComponent implements OnInit {
     const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
 
     this.form = this.fb.group({
-      email: [null, Validators.compose([Validators.required, CustomValidators.email])],
+      agree: [false, Validators.compose([CustomValidators.equal(true)])],
+      email: ['', Validators.compose([Validators.required, CustomValidators.email])],
       password: password,
       confirmPassword: confirmPassword,
-      agree: [false, CustomValidators.equal(true)],
     });
   }
 
