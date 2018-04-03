@@ -17,7 +17,7 @@ export class UploadService {
       params: new HttpParams().set('name', file.name).set('filesize', file.size + ''),
       withCredentials: true
     }).retry(this.config.requestRetry);
-  }
+  };
 
   private uploadFile = (token: UploadToken, file: File): Observable<HttpEvent<any>> => {
     return new Observable((observer: Observer<HttpEvent<any>>) => {
@@ -57,7 +57,7 @@ export class UploadService {
         }
       };
     });
-  }
+  };
 
   constructor(@Inject(APP_CONFIG) private config: IAppConfig, private http: HttpClient) {
   }

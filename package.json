@@ -7,8 +7,8 @@
     "start": "ng serve",
     "start-hmr": "ng serve --hmr -e=hmr -sm=false",
     "start-hmr-sourcemaps": "ng serve --hmr -e=hmr",
-    "build": "node --max_old_space_size=4096 build",
-    "build-prod": "node --max_old_space_size=4096 build --prod",
+    "build": "node --max_old_space_size=4096 build --aot",
+    "build-prod": "node --max_old_space_size=4096 build --aot --prod",
     "e2e": "ng e2e",
     "test": "ng test",
     "lint": "ng lint"

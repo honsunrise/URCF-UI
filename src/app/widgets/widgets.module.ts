@@ -12,6 +12,9 @@ import {MaterialModule} from '../shared/material.module';
 import {SharedModule} from '../shared/shared.module';
 import {InfoListComponent} from './info-list/info-list.component';
 import {InfoListItemComponent} from './info-list/mail-list-item/info-list-item.component';
+import {DynamicContainerComponent} from './dynamic-container/dynamic-container.component';
+import {DynamicHTMLModule} from './dynamic-html/dynamic-html.module';
+import {MatButton, MatIcon} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -19,7 +22,13 @@ import {InfoListItemComponent} from './info-list/mail-list-item/info-list-item.c
     MaterialModule,
     SharedModule,
     ChartsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    DynamicHTMLModule.forRoot({
+      components: [
+        MatIcon,
+        MatButton,
+      ]
+    })
   ],
   declarations: [
     MediaCardComponent,
@@ -29,6 +38,7 @@ import {InfoListItemComponent} from './info-list/mail-list-item/info-list-item.c
     MaterialColorPickerComponent,
     InfoListComponent,
     InfoListItemComponent,
+    DynamicContainerComponent,
   ],
   exports: [
     MediaCardComponent,
@@ -38,6 +48,8 @@ import {InfoListItemComponent} from './info-list/mail-list-item/info-list-item.c
     MaterialColorPickerComponent,
     InfoListComponent,
     InfoListItemComponent,
+    DynamicContainerComponent,
+    DynamicHTMLModule,
   ]
 })
 export class WidgetsModule {

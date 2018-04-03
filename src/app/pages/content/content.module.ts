@@ -50,7 +50,7 @@ import {UploadFileComponent} from './publish/upload-file/upload-file.component';
     VgBufferingModule,
     QuillModule,
     HttpClientModule,
-    WidgetsModule
+    WidgetsModule,
   ],
   declarations: [
     BlankComponent,
