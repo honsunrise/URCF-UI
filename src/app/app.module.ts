@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
-import {NgModule} from '@angular/core';
+import {Compiler, COMPILER_OPTIONS, CompilerFactory, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
@@ -23,6 +23,7 @@ import {NavigationModule} from './widgets/navigation/navigation.module';
 import {NavigationLoader} from './widgets/navigation/navigation.loader';
 import {AuthService} from './auth/auth.service';
 import {AuthNavigationLoader} from './app.auth.navigation.loader';
+import {JitCompilerFactory} from '@angular/platform-browser-dynamic';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -30,6 +31,10 @@ export function createTranslateLoader(http: HttpClient) {
 
 export function createNavigationLoader(authService: AuthService) {
   return new AuthNavigationLoader(authService);
+}
+
+export function createCompiler(compilerFactory: CompilerFactory) {
+  return compilerFactory.createCompiler();
 }
 
 @NgModule({
@@ -65,7 +70,10 @@ export function createNavigationLoader(authService: AuthService) {
     ServiceModule
   ],
   providers: [
-    {provide: APP_CONFIG, useValue: APP_DI_CONFIG}
+    {provide: COMPILER_OPTIONS, useValue: {useJit: true}, multi: true},
+    {provide: CompilerFactory, useClass: JitCompilerFactory, deps: [COMPILER_OPTIONS]},
+    {provide: Compiler, useFactory: createCompiler, deps: [CompilerFactory]},
+    {provide: APP_CONFIG, useValue: APP_DI_CONFIG},
   ],
   bootstrap: [AppComponent]
 })

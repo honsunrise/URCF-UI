@@ -17,8 +17,11 @@ export class MainComponent implements AfterViewInit {
       <div>
         <p>bla bla bla</p>
          <mat-icon class="mat-24">thumb_up</mat-icon>
+        <button mat-icon-button>
+            <mat-icon class="mat-24">thumb_up</mat-icon>
+        </button>
         <button mat-button>
-            aaaaa
+            A button
         </button>
       </div>
     </article>

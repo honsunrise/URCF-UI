@@ -39,20 +39,22 @@ mat-toolbar {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      width: 160px;
       margin: auto 0;
       line-height: 50px;
-      padding: 0 64px 0 16px;
+      padding: 0 18px 0 14px;
     }
     .logo {
       display: inline;
       background-image: url(/assets/images/logo.png);
-      width: 25px;
-      height: 25px;
-      -webkit-background-size: 25px 25px;
-      background-size: 25px 25px;
+      width: 125px;
+      height: 54px;
+      -webkit-background-size: 125px 54px;
+      background-size: 125px 54px;
       margin: auto;
     }
     .title {
+      display: none;
       margin-left: 7px;
       font-size: 22px;
       text-transform: uppercase;

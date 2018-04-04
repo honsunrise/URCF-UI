@@ -1,27 +1,37 @@
 import {
+  AfterViewInit,
+  Compiler,
   Component,
   ComponentRef,
   Input,
-  NgModuleFactory,
+  NgModuleFactoryLoader,
   OnDestroy,
   SystemJsNgModuleLoader,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
 
+declare const System;
+
 @Component({
   selector: 'dynamic-container',
   templateUrl: './dynamic-container.component.html',
   styleUrls: ['./dynamic-container.component.scss'],
+  providers: [
+    {
+      provide: NgModuleFactoryLoader,
+      useClass: SystemJsNgModuleLoader
+    }
+  ]
 })
-export class DynamicContainerComponent implements OnDestroy {
+export class DynamicContainerComponent implements OnDestroy, AfterViewInit {
   @ViewChild('container', {read: ViewContainerRef}) vcRef: ViewContainerRef;
   @Input() modulePath: string;
   @Input() moduleName: string;
   loaded: boolean;
   private compRef: ComponentRef<any>;
 
-  constructor(private moduleLoader: SystemJsNgModuleLoader) {
+  constructor(public compiler: Compiler) {
   }
 
   private _inited: boolean;
@@ -38,19 +48,26 @@ export class DynamicContainerComponent implements OnDestroy {
   }
 
   loadComponent() {
-    this.moduleLoader.load(`${this.modulePath}#${this.moduleName}`)
-      .then((moduleFactory: NgModuleFactory<any>) => {
-        const vcRef = this.vcRef;
-        const entryComponent = (<any>moduleFactory.moduleType).entry;
-        const ngModuleRef = moduleFactory.create(vcRef.parentInjector);
-        const compFactory = ngModuleRef.componentFactoryResolver.resolveComponentFactory(entryComponent);
-        this.compRef = vcRef.createComponent(compFactory, 0, ngModuleRef.injector);
-
-        this.loaded = true;
-      });
+    console.log(System);
+    System.import(`${this.modulePath}#${this.moduleName}`).then((module) => {
+      this.compiler.compileModuleAndAllComponentsAsync(module.LazyModule)
+        .then((compiled) => {
+          const vcRef = this.vcRef;
+          const ngModuleRef = compiled.ngModuleFactory.create(vcRef.parentInjector);
+          const factory = compiled.componentFactories[0];
+          this.compRef = vcRef.createComponent(factory, 0, ngModuleRef.injector);
+          this.loaded = true;
+        });
+    });
   }
 
   ngOnDestroy() {
-    this.compRef.destroy();
+    if (this.compRef && this._inited) {
+      this.compRef.destroy();
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.inited = true;
   }
 }
