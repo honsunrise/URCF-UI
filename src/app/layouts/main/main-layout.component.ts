@@ -5,6 +5,7 @@ import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-layout',
+  styleUrls: ['./main-layout.component.scss'],
   templateUrl: './main-layout.component.html'
 })
 export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
