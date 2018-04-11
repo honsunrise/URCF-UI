@@ -1,7 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {APP_CONFIG} from '../app.config.constants';
-import {IAppConfig} from '../app.config.interface';
+import {APP_CONFIG, IAppConfig} from '../../app.config.interface';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -21,10 +20,9 @@ export class AuthService {
     }).do(data => {
       this.isLogin = true;
       localStorage.setItem('auth_token', data['access_token']);
-    })
-      .map(() => {
-        return true;
-      });
+    }).map(() => {
+      return true;
+    });
   }
 
   logout(): void {

@@ -15,14 +15,15 @@ import {AppComponent} from './app.component';
 import {MainLayoutComponent} from './layouts/main/main-layout.component';
 import {AuthLayoutComponent} from './layouts/auth/auth-layout.component';
 import {SharedModule} from './shared/shared.module';
-import {AuthModule} from './auth/auth.module';
+import {AuthModule} from './service/auth/auth.module';
 import {ServiceModule} from './service/service.module';
-import {APP_CONFIG, APP_DI_CONFIG} from './app.config.constants';
 import {MaterialModule} from './shared/material.module';
 import {NavigationModule} from './widgets/navigation/navigation.module';
 import {NavigationLoader} from './widgets/navigation/navigation.loader';
-import {AuthService} from './auth/auth.service';
+import {AuthService} from './service/auth/auth.service';
 import {AuthNavigationLoader} from './app.auth.navigation.loader';
+import {APP_CONFIG} from './app.config.interface';
+import {APP_DI_CONFIG} from '../environments/environment';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

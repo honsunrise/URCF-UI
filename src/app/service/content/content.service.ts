@@ -1,6 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {APP_CONFIG} from '../../app.config.constants';
-import {IAppConfig} from '../../app.config.interface';
+import {APP_CONFIG, IAppConfig} from '../../app.config.interface';
 import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {Info} from '../domain/info';
 import {Observable} from 'rxjs/Rx';

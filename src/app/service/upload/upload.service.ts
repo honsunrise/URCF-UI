@@ -1,7 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
-import {APP_CONFIG} from '../../app.config.constants';
-import {IAppConfig} from '../../app.config.interface';
+import {APP_CONFIG, IAppConfig} from '../../app.config.interface';
 import {HttpClient, HttpEvent, HttpEventType, HttpParams} from '@angular/common/http';
 import {UploadToken} from '../domain/uploadToken';
 import {NextChunk} from '../domain/nextChunk';
@@ -12,14 +11,14 @@ import {Subscription} from 'rxjs/Subscription';
 @Injectable()
 export class UploadService {
 
-  private requestUploadToken = (file: File): Observable<any> => {
+  private requestUploadToken(file: File): Observable<any> {
     return this.http.get<UploadToken>(this.config.uploadEndpoint + '/base/upload', {
       params: new HttpParams().set('name', file.name).set('filesize', file.size + ''),
       withCredentials: true
     }).retry(this.config.requestRetry);
   }
 
-  private uploadFile = (token: UploadToken, file: File): Observable<HttpEvent<any>> => {
+  private uploadFile(token: UploadToken, file: File): Observable<HttpEvent<any>> {
     return new Observable((observer: Observer<HttpEvent<any>>) => {
       let subscription: Subscription = null;
       let continueUpload = true;

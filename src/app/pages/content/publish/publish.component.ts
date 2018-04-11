@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {APP_CONFIG} from '../../../app.config.constants';
-import {IAppConfig} from '../../../app.config.interface';
+import {IAppConfig, APP_CONFIG} from '../../../app.config.interface';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CustomValidators} from 'ng2-validation';
 import {ContentService} from '../../../service/content/content.service';

@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {AuthService} from '../../auth/auth.service';
+import {AuthService} from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-layout',
