@@ -15,7 +15,6 @@ import {AppComponent} from './app.component';
 import {MainLayoutComponent} from './layouts/main/main-layout.component';
 import {AuthLayoutComponent} from './layouts/auth/auth-layout.component';
 import {SharedModule} from './shared/shared.module';
-import {AuthModule} from './service/auth/auth.module';
 import {ServiceModule} from './service/service.module';
 import {MaterialModule} from './shared/material.module';
 import {NavigationModule} from './widgets/navigation/navigation.module';
@@ -46,7 +45,6 @@ export function createNavigationLoader(authService: AuthService) {
     SharedModule,
     FormsModule,
     HttpClientModule,
-    AuthModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
