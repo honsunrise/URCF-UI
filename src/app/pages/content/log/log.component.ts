@@ -44,7 +44,6 @@ export class LogComponent implements OnInit, OnDestroy {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          console.log(this.paginator.pageSize);
           return this.logService.getAll(this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize);
         }),
         map(data => {
