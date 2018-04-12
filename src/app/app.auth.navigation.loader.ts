@@ -11,58 +11,36 @@ export class AuthNavigationLoader implements NavigationLoader {
     if (this.authService.checkLogin()) {
       return Observable.of([
         {
-          'id': 'home',
-          'title': 'Home',
+          'id': 'plugin',
+          'title': 'Plugin',
           'type': 'item',
           'icon': 'home',
           'url': '/home'
         },
         {
-          'id': 'cate',
-          'title': 'Cate',
-          'type': 'item',
-          'icon': 'code',
-          'url': '/cate'
-        },
-        {
-          'id': 'media_library',
-          'title': 'Media Library',
+          'id': 'system',
+          'title': 'System',
           'type': 'group',
           'children': [
             {
-              'id': 'later',
-              'title': 'Watch Later',
+              'id': 'log',
+              'title': 'Log',
               'type': 'item',
               'icon': 'history',
-              'url': '/playlist/later'
+              'url': '/log'
             },
             {
               'id': 'favorite',
-              'title': 'Favorite',
+              'title': 'Config',
               'type': 'item',
-              'icon': 'favorite',
-              'url': '/playlist/favorite'
+              'icon': 'setting',
+              'url': '/config'
             },
           ]
         }
       ]);
     } else {
-      return Observable.of([
-        {
-          'id': 'home',
-          'title': 'Home',
-          'type': 'item',
-          'icon': 'home',
-          'url': '/home'
-        },
-        {
-          'id': 'cate',
-          'title': 'Cate',
-          'type': 'item',
-          'icon': 'code',
-          'url': '/cate'
-        }
-      ]);
+      return Observable.of([]);
     }
   }
 }

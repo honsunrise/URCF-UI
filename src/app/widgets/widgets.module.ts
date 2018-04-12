@@ -10,8 +10,6 @@ import {CountdownComponent} from './countdown/countdown.component';
 import {MaterialColorPickerComponent} from './material-color-picker/material-color-picker.component';
 import {MaterialModule} from '../shared/material.module';
 import {SharedModule} from '../shared/shared.module';
-import {InfoListComponent} from './info-list/info-list.component';
-import {InfoListItemComponent} from './info-list/mail-list-item/info-list-item.component';
 
 @NgModule({
   imports: [
@@ -27,8 +25,6 @@ import {InfoListItemComponent} from './info-list/mail-list-item/info-list-item.c
     ConfirmDialogComponent,
     CountdownComponent,
     MaterialColorPickerComponent,
-    InfoListComponent,
-    InfoListItemComponent,
   ],
   exports: [
     MediaCardComponent,
@@ -36,8 +32,6 @@ import {InfoListItemComponent} from './info-list/mail-list-item/info-list-item.c
     ConfirmDialogComponent,
     CountdownComponent,
     MaterialColorPickerComponent,
-    InfoListComponent,
-    InfoListItemComponent,
   ]
 })
 export class WidgetsModule {

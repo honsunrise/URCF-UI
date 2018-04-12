@@ -28,25 +28,10 @@ export class AccountService {
       });
   }
 
-  public resendRegisterEmail(email: string): Observable<boolean> {
-    return this.http.get(this.config.loginEndpoint + '/resendVerifiedEmail', {
-      params: new HttpParams().set('email', email),
-    })
-      .do(data => console.log(data), (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log('An error occurred:', err.error.message);
-        } else {
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-        }
-      }, () => console.log('Complete'))
-      .map(data => {
-        return true;
-      });
-  }
-
-  public confirmEmail(email: string, token: string, lang: string): Observable<boolean> {
-    return this.http.get(this.config.loginEndpoint + '/email/registrationConfirm', {
-      params: new HttpParams().set('email', email).set('token', token).set('lang', lang),
+  public changePassword(password: string, oldPassword: string): Observable<boolean> {
+    return this.http.post(this.config.loginEndpoint + '/change_password', {
+      new_password: password,
+      old_password: oldPassword
     })
       .do(data => console.log(data), (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {

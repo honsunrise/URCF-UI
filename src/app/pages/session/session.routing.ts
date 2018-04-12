@@ -8,7 +8,6 @@ import {SigninComponent} from './signin/signin.component';
 import {SignupComponent} from './signup/signup.component';
 import {AuthGuard} from '../../service/auth/auth.guard.service';
 import {MailConfirmComponent} from './mail-confirm/mail-confirm.component';
-import {ConfirmMailComponent} from './confirm-mail/confirm-mail.component';
 
 export const SessionRoutes: Routes = [
   {
@@ -35,9 +34,6 @@ export const SessionRoutes: Routes = [
     }, {
       path: 'signupsuccess',
       component: MailConfirmComponent
-    }, {
-      path: 'confirm',
-      component: ConfirmMailComponent
     }]
   }
 ];

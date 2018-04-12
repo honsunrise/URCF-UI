@@ -17,20 +17,10 @@ import {TranslateModule} from '@ngx-translate/core';
 import {ContentRoutes} from './content.routing';
 import {BlankComponent} from './blank/blank.component';
 import {WidgetsModule} from '../../widgets/widgets.module';
-import {WatchComponent} from './watch/watch.component';
 import {MainComponent} from './main/main.component';
-import {CateComponent} from './cate/cate.component';
-import {
-  DialogCancelConfirmComponent,
-  DialogPublishCompleteComponent,
-  DialogPublishErrorComponent,
-  PublishComponent
-} from './publish/publish.component';
-import {PlayListComponent} from './playlist/playlist.component';
-import {ProfileComponent} from './profile/profile.component';
 import {MaterialModule} from '../../shared/material.module';
 import {SharedModule} from '../../shared/shared.module';
-import {UploadFileComponent} from './publish/upload-file/upload-file.component';
+import {LogComponent} from './log/log.component';
 
 @NgModule({
   imports: [
@@ -53,24 +43,12 @@ import {UploadFileComponent} from './publish/upload-file/upload-file.component';
     WidgetsModule
   ],
   declarations: [
+    NgFileDropDirective,
     BlankComponent,
     MainComponent,
-    CateComponent,
-    WatchComponent,
-    PublishComponent,
-    PlayListComponent,
-    ProfileComponent,
-    UploadFileComponent,
-    NgFileDropDirective,
-    DialogPublishCompleteComponent,
-    DialogCancelConfirmComponent,
-    DialogPublishErrorComponent
+    LogComponent,
   ],
-  entryComponents: [
-    DialogPublishCompleteComponent,
-    DialogCancelConfirmComponent,
-    DialogPublishErrorComponent
-  ]
+  entryComponents: []
 })
 
 export class ContentModule {

@@ -4,19 +4,17 @@ import {CustomValidators} from 'ng2-validation';
 import {AccountService} from '../../../service/account/account.service';
 import {AuthGuard} from '../../../service/auth/auth.guard.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
-import {DialogMailConfirmErrorComponent} from '../confirm-mail/confirm-mail.component';
 
 @Component({
-  selector: 'dialog-already-registered-error',
-  template: '<h1 mat-dialog-title>Have already registered</h1>\n' +
-  '<div mat-dialog-content>Are you want resend a email.</div>\n' +
-  '<div mat-dialog-actions>\n' +
-  '  <button mat-button mat-dialog-close="true">Yes</button>\n' +
-  '  <button mat-button mat-dialog-close="false">No</button>\n' +
+  selector: 'dialog-register-error',
+  template: '<h1 mat-dialog-title>Register error</h1>' +
+  '<div mat-dialog-content>Happen some error, please try again later.</div>' +
+  '<div mat-dialog-actions>' +
+  '  <button mat-button mat-dialog-close="true">OK</button>' +
   '</div>'
 })
 export class DialogSignupErrorComponent {
-  constructor(public dialogRef: MatDialogRef<DialogMailConfirmErrorComponent>,
+  constructor(public dialogRef: MatDialogRef<DialogSignupErrorComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 }
@@ -50,17 +48,10 @@ export class SignupComponent implements OnInit {
     this.accountService.register(this.form.value['email'], this.form.value['password']).subscribe(() => {
       this.authGuard.redirect();
     }, error => {
-      if (error.status === 400 && error.error['code'] === 2400008) {
-        this.dialog.open(DialogSignupErrorComponent, {
-          disableClose: true,
-          width: '350px',
-        }).beforeClose().subscribe((ans) => {
-          if (ans) {
-            this.accountService.resendRegisterEmail(this.form.value['email']).subscribe();
-            this.authGuard.redirect();
-          }
-        });
-      }
+      this.dialog.open(DialogSignupErrorComponent, {
+        disableClose: true,
+        width: '350px',
+      });
     });
   }
 }

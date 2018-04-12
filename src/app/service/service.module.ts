@@ -1,16 +1,15 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ContentService} from './content/content.service';
+import {LogService} from './log/log.service';
 import {AccountService} from './account/account.service';
 import {EmbedVideoService} from './embed-video/embed-video.service';
-import {MessageService} from './message/message.service';
 import {CopierService} from './copier/copier.service';
 import {SplashScreenService} from './splash/splash-screen.service';
 import {UploadService} from './upload/upload.service';
-import {UserService} from './user/user.service';
 import {JWT_OPTIONS, JwtModule} from '@auth0/angular-jwt';
 import {AuthService} from './auth/auth.service';
 import {AuthGuard} from './auth/auth.guard.service';
+import {PluginService} from './plugin/plugin.service';
 
 export function jwtOptionsFactory() {
   return {
@@ -31,14 +30,13 @@ export function jwtOptionsFactory() {
     })
   ],
   providers: [
-    ContentService,
+    LogService,
+    PluginService,
     AccountService,
     EmbedVideoService,
-    MessageService,
     CopierService,
     SplashScreenService,
     UploadService,
-    UserService,
     AuthGuard,
     AuthService
   ],

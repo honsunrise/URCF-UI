@@ -2,7 +2,8 @@ import {InjectionToken} from '@angular/core';
 
 export interface IAppConfig {
   loginEndpoint: string;
-  contentEndpoint: string;
+  logEndpoint: string;
+  pluginEndpoint: string;
   uploadEndpoint: string;
   requestRetry: number;
   uploadRetry: number;

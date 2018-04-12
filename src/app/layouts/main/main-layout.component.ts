@@ -72,4 +72,9 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
       this.sidemenu.mode = 'side';
     }
   }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/session/signin']);
+  }
 }

@@ -2,35 +2,21 @@ import {Routes} from '@angular/router';
 
 import {BlankComponent} from './blank/blank.component';
 import {MainComponent} from './main/main.component';
-import {CateComponent} from './cate/cate.component';
-import {WatchComponent} from './watch/watch.component';
-import {PublishComponent} from './publish/publish.component';
-import {PlayListComponent} from './playlist/playlist.component';
-import {ProfileComponent} from './profile/profile.component';
+import {LogComponent} from './log/log.component';
+import {AuthGuard} from '../../service/auth/auth.guard.service';
 
 export const ContentRoutes: Routes = [
   {
     path: '',
+    canActivateChild: [AuthGuard],
     children: [{
       path: 'home',
       component: MainComponent
     }, {
-      path: 'cate',
-      component: CateComponent
+      path: 'log',
+      component: LogComponent
     }, {
-      path: 'watch/:id',
-      component: WatchComponent
-    }, {
-      path: 'publish',
-      component: PublishComponent
-    }, {
-      path: 'playlist/:type',
-      component: PlayListComponent
-    }, {
-      path: 'profile',
-      component: ProfileComponent
-    }, {
-      path: 'blank',
+      path: 'block',
       component: BlankComponent
     }, {
       path: '',

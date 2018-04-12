@@ -6,7 +6,7 @@
     </button>
     <div class="branding">
       <div class="logo"></div>
-      <div class="title">Adulttags</div>
+      <div class="title">URCF-UI</div>
     </div>
     <div class="search-bar" fxFlex>
       <form class="search-form" fxShow="false" fxShow.gt-xs>
@@ -17,28 +17,15 @@
     <button appToggleFullscreen mat-icon-button>
       <mat-icon>fullscreen</mat-icon>
     </button>
-    <button (click)="!authService.checkLogin() || end.toggle()" mat-icon-button class="ml-xs overflow-visible"
-            *ngIf="authService.checkLogin()">
-      <mat-icon>notifications</mat-icon>
-      <span class="notification-label">5</span>
-    </button>
     <button [mat-menu-trigger-for]="user" mat-icon-button class="ml-xs">
       <mat-icon>person</mat-icon>
     </button>
     <mat-menu #user x-position="before">
-      <button mat-menu-item *ngIf="authService.checkLogin()" [routerLink]="['/profile']">
-        <mat-icon>account_box</mat-icon>
-        Profile
-      </button>
-      <button mat-menu-item *ngIf="authService.checkLogin()">
-        <mat-icon>notifications_off</mat-icon>
-        Disable notifications
-      </button>
       <button mat-menu-item *ngIf="!authService.checkLogin()" [routerLink]="['/session/signin']">
         <mat-icon>exit_to_app</mat-icon>
         Sign In
       </button>
-      <button mat-menu-item *ngIf="authService.checkLogin()" (click)="authService.logout()">
+      <button mat-menu-item *ngIf="authService.checkLogin()" (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
         Sign Out
       </button>
@@ -50,71 +37,8 @@
                  [opened]="!isOver()" (mouseover)="menuMouseOver()" (mouseout)="menuMouseOut()">
       <app-navigation layout="vertical"></app-navigation>
     </mat-sidenav>
-    <mat-sidenav #end align="end" class="chat-panel" mode="over" opened="false">
-      <mat-tab-group [selectedIndex]="1" mat-stretch-tabs>
-        <mat-tab>
-          <ng-template mat-tab-label>Notifications</ng-template>
-          <div class="scroll" perfectScrollbar>
-            <mat-nav-list>
-              <mat-list-item>
-                <mat-icon mat-list-avatar class="mat-text-primary">people</mat-icon>
-                <h4 mat-line>Social</h4>
-                <p mat-line>Ligula Purus Adipiscing</p>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-avatar class="mat-text-warn">local_offer</mat-icon>
-                <h4 mat-line>Promotions</h4>
-                <p mat-line>Etiam Ligula Dapibus</p>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-avatar class="mat-text-accent">info</mat-icon>
-                <h4 mat-line>Updates</h4>
-                <p mat-line>Sollicitudin Euismod Fringilla</p>
-              </mat-list-item>
-
-              <mat-list-item>
-                <mat-icon mat-list-avatar class="mat-indigo">delete_sweep</mat-icon>
-                <h4 mat-line>Removed 6 items from task list</h4>
-                <span class="text-mat mat-text-muted" mat-line>{{ 1427207139000 | date: 'fullDate' }}</span>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-avatar>check_circle</mat-icon>
-                <h4 mat-line>Completed 2 projects</h4>
-                <span class="text-mat mat-text-muted" mat-line>{{ 1427412725000 | date: 'fullDate' }}</span>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-avatar>notifications_paused</mat-icon>
-                <h4 mat-line>Muted notifications</h4>
-                <span class="text-mat mat-text-muted" mat-line>{{ 1427546580000 | date: 'fullDate' }}</span>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-avatar>person_add</mat-icon>
-                <h4 mat-line>Added Joel to contact list</h4>
-                <span class="text-mat mat-text-muted" mat-line>{{ 1428275520000 | date: 'fullDate' }}</span>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-avatar>phone_missed</mat-icon>
-                <h4 mat-line>Missed live call from Ellie</h4>
-                <span class="text-mat mat-text-muted" mat-line>{{ 1428830580000 | date: 'fullDate' }}</span>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-avatar>group_add</mat-icon>
-                <h4 mat-line>You've been added to HR group</h4>
-                <span class="text-mat mat-text-muted" mat-line>{{ 1429363920000 | date: 'fullDate' }}</span>
-              </mat-list-item>
-            </mat-nav-list>
-          </div>
-        </mat-tab>
-      </mat-tab-group>
-    </mat-sidenav>
     <mat-sidenav-content perfectScrollbar>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-
-  <!-- Demo Purposes Only -->
-  <button mat-fab color="warn" class="mat-fab-bottom-right" *ngIf="authService.checkLogin()" style="z-index: 10"
-          [routerLink]="['/publish']">
-    <mat-icon class="mat-24">add</mat-icon>
-  </button>
 </div>
