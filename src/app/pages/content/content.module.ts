@@ -21,6 +21,10 @@ import {MainComponent} from './main/main.component';
 import {MaterialModule} from '../../shared/material.module';
 import {SharedModule} from '../../shared/shared.module';
 import {LogComponent} from './log/log.component';
+import {NetfilterComponent} from './netfilter/netfilter.component';
+import {ConfigComponent} from './config/config.component';
+import {PluginComponent} from './plugin/plugin.component';
+import {ProcessesComponent} from './processes/processes.component';
 
 @NgModule({
   imports: [
@@ -47,6 +51,10 @@ import {LogComponent} from './log/log.component';
     BlankComponent,
     MainComponent,
     LogComponent,
+    ConfigComponent,
+    NetfilterComponent,
+    PluginComponent,
+    ProcessesComponent
   ],
   entryComponents: []
 })

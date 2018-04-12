@@ -11,11 +11,18 @@ export class AuthNavigationLoader implements NavigationLoader {
     if (this.authService.checkLogin()) {
       return Observable.of([
         {
-          'id': 'plugin',
-          'title': 'Plugin',
+          'id': 'dashboard',
+          'title': 'Dashboard',
           'type': 'item',
           'icon': 'home',
           'url': '/home'
+        },
+        {
+          'id': 'plugin',
+          'title': 'Plugin',
+          'type': 'item',
+          'icon': 'extension',
+          'url': '/plugin'
         },
         {
           'id': 'system',
@@ -30,12 +37,26 @@ export class AuthNavigationLoader implements NavigationLoader {
               'url': '/log'
             },
             {
-              'id': 'favorite',
+              'id': 'config',
               'title': 'Config',
               'type': 'item',
-              'icon': 'setting',
+              'icon': 'settings',
               'url': '/config'
             },
+            {
+              'id': 'config',
+              'title': 'Netfilter',
+              'type': 'item',
+              'icon': 'settings_ethernet',
+              'url': '/netfilter'
+            },
+            {
+              'id': 'processes',
+              'title': 'Processes',
+              'type': 'item',
+              'icon': 'developer_board',
+              'url': '/processes'
+            }
           ]
         }
       ]);

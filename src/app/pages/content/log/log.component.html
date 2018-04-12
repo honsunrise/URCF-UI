@@ -1,6 +1,6 @@
 <div fxLayout="row" fxFill>
-  <mat-card fxFlex>
-    <div *ngIf="dataSource.data.length === 0">
+  <mat-card fxFlex aria-busy>
+    <div *ngIf="dataSource.data.length === 0 && !isLoadingResults">
       <span class="no-messages-text">There are no logs!</span>
     </div>
     <div class="container">
