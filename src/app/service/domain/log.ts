@@ -5,7 +5,7 @@ export interface LogWithTotal {
 
 export interface Log {
   id: number;
-  create_date: string;
+  create_time: string;
   message: string;
   name: string;
   level: number;

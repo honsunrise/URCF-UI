@@ -1,16 +1,16 @@
-<div fxLayout="row" fxFill>
-  <mat-card fxFlex aria-busy>
+<div fxLayout="column" fxFill>
+  <mat-card fxLayout="column" fxFlex>
     <div *ngIf="dataSource.data.length === 0 && !isLoadingResults">
       <span class="no-messages-text">There are no logs!</span>
     </div>
-    <div class="container">
-      <div class="example-header">
+    <div fxLayout="column" fxFlex>
+      <div class="header">
         <mat-form-field>
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
       </div>
-      <mat-table #table [dataSource]="dataSource" matSort matSortActive="created" matSortDisableClear
-                 matSortDirection="asc" perfectScrollbar>
+      <mat-table #table [dataSource]="dataSource" matSort matSortActive="create_time" matSortDisableClear
+                 matSortDirection="desc" perfectScrollbar fxFlex>
         <!-- Checkbox Column -->
         <ng-container matColumnDef="select">
           <mat-header-cell *matHeaderCellDef>
@@ -47,7 +47,7 @@
           <mat-cell *matCellDef="let element"> {{element.level}} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="time">
+        <ng-container matColumnDef="create_time">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Time </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.create_date}} </mat-cell>
         </ng-container>

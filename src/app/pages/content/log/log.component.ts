@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {LogService} from '../../../service/log/log.service';
 import {Log} from '../../../service/domain/log';
@@ -6,7 +6,7 @@ import {APP_ANIMATIONS} from '../../../animations';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 import {merge} from 'rxjs/observable/merge';
-import {of as observableOf} from 'rxjs/observable/of';
+import {of} from 'rxjs/observable/of';
 import {catchError} from 'rxjs/operators/catchError';
 import {map} from 'rxjs/operators/map';
 import {startWith} from 'rxjs/operators/startWith';
@@ -18,8 +18,8 @@ import {switchMap} from 'rxjs/operators/switchMap';
   styleUrls: ['./log.component.scss'],
   animations: APP_ANIMATIONS
 })
-export class LogComponent implements OnInit, OnDestroy {
-  displayedColumns = ['select', 'id', 'name', 'message', 'level', 'time'];
+export class LogComponent implements OnInit, AfterViewInit {
+  displayedColumns = ['select', 'id', 'name', 'message', 'level', 'create_time'];
   dataSource = new MatTableDataSource<Log>();
   selection = new SelectionModel<Log>(true, []);
 
@@ -36,7 +36,10 @@ export class LogComponent implements OnInit, OnDestroy {
     };
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     merge(this.sort.sortChange, this.paginator.page)
@@ -44,26 +47,25 @@ export class LogComponent implements OnInit, OnDestroy {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.logService.getAll(this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize);
-        }),
-        map(data => {
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.isRateLimitReached = false;
-          this.resultsLength = data.total_count;
+          return this.logService.getAll(this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize)
+            .pipe(
+              map(data => {
+                this.isLoadingResults = false;
+                this.isRateLimitReached = false;
+                this.resultsLength = data.total_count;
 
-          return data.items;
+                return data.items;
+              }),
+              catchError(() => {
+                this.isLoadingResults = false;
+                this.isRateLimitReached = true;
+                return of([]);
+              })
+            );
         }),
-        catchError(err => {
-          console.log(err);
-          this.isLoadingResults = false;
-          this.isRateLimitReached = true;
-          return observableOf([]);
-        })
-      ).subscribe(data => this.dataSource.data = data);
-  }
-
-  ngOnDestroy() {
+      ).subscribe(data => {
+        this.dataSource.data = data;
+      });
   }
 
   applyFilter(filterValue: string) {
