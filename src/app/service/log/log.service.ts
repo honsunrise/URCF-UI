@@ -22,6 +22,6 @@ export class LogService {
   }
 
   clean(id?: number): Observable<boolean> {
-    return this.http.delete(this.config.logEndpoint + '/clean/' + id).map(() => true);
+    return this.http.delete(this.config.logEndpoint + '/' + id).map(() => true);
   }
 }

@@ -23,13 +23,17 @@ import {SharedModule} from '../../shared/shared.module';
 import {LogComponent} from './log/log.component';
 import {NetfilterComponent} from './netfilter/netfilter.component';
 import {ConfigComponent} from './config/config.component';
-import {PluginComponent} from './plugin/plugin.component';
+import {PluginsComponent, PluginInstallDialogComponent} from './plugins/plugins.component';
 import {ProcessesComponent} from './processes/processes.component';
+import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
+import {FileInputAccessorModule} from 'file-input-accessor';
+import {PluginComponent} from './plugin/plugin.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(ContentRoutes),
+    FileInputAccessorModule,
     FormsModule,
     MaterialModule,
     SharedModule,
@@ -53,10 +57,17 @@ import {ProcessesComponent} from './processes/processes.component';
     LogComponent,
     ConfigComponent,
     NetfilterComponent,
+    PluginsComponent,
     PluginComponent,
-    ProcessesComponent
+    ProcessesComponent,
+    PluginInstallDialogComponent
   ],
-  entryComponents: []
+  entryComponents: [
+    PluginInstallDialogComponent
+  ],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true, autoFocus: true, closeOnNavigation: true}}
+  ]
 })
 
 export class ContentModule {

@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {ChartsModule} from 'ng2-charts/ng2-charts';
-import {MediaCardComponent} from './media-card/media-card.component';
+import {PluginCardComponent} from './plugin-card/plugin-card.component';
 import {FramedContentComponent} from './framed-content/frame-content.component';
 import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 import {CountdownComponent} from './countdown/countdown.component';
@@ -20,14 +20,14 @@ import {SharedModule} from '../shared/shared.module';
     FlexLayoutModule
   ],
   declarations: [
-    MediaCardComponent,
+    PluginCardComponent,
     FramedContentComponent,
     ConfirmDialogComponent,
     CountdownComponent,
     MaterialColorPickerComponent,
   ],
   exports: [
-    MediaCardComponent,
+    PluginCardComponent,
     FramedContentComponent,
     ConfirmDialogComponent,
     CountdownComponent,

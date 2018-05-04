@@ -1,0 +1,19 @@
+<div>
+  <mat-card (click)="media.onClick()">
+    <mat-card-title fxLayout="row">
+      <span class="text-ellipsis" fxFlex="grow">{{media.title + '@' +media.version}}</span>
+    </mat-card-title>
+    <img mat-card-image src="{{media.coverUrl}}">
+    <mat-card-content>
+      <p>{{media.content | slice:0:100}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxLayout="row">
+        <span fxFlex></span>
+          <button mat-icon-button (click.stop)="media.onClickDelete()">
+            <mat-icon class="mat-24">delete_forever</mat-icon>
+          </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

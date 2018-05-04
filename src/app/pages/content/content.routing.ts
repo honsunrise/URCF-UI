@@ -6,8 +6,9 @@ import {LogComponent} from './log/log.component';
 import {AuthGuard} from '../../service/auth/auth.guard.service';
 import {NetfilterComponent} from './netfilter/netfilter.component';
 import {ConfigComponent} from './config/config.component';
-import {PluginComponent} from './plugin/plugin.component';
+import {PluginsComponent} from './plugins/plugins.component';
 import {ProcessesComponent} from './processes/processes.component';
+import {PluginComponent} from './plugin/plugin.component';
 
 export const ContentRoutes: Routes = [
   {
@@ -17,7 +18,10 @@ export const ContentRoutes: Routes = [
       path: 'home',
       component: MainComponent
     }, {
-      path: 'plugin',
+      path: 'plugins',
+      component: PluginsComponent
+    }, {
+      path: 'plugins/:name',
       component: PluginComponent
     }, {
       path: 'log',

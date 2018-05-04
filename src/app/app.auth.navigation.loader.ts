@@ -18,11 +18,11 @@ export class AuthNavigationLoader implements NavigationLoader {
           'url': '/home'
         },
         {
-          'id': 'plugin',
+          'id': 'plugins',
           'title': 'Plugin',
           'type': 'item',
           'icon': 'extension',
-          'url': '/plugin'
+          'url': '/plugins'
         },
         {
           'id': 'system',

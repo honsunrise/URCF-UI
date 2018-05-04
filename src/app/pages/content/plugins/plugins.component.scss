@@ -1,0 +1,41 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.install-plugin-card {
+  min-height: 403px;
+  height: 403px;
+  min-width: 252px;
+  width: 252px;
+  margin: 8px;
+  cursor: pointer;
+  box-shadow: none;
+  border: 2px dashed #ccc;
+  background: rgb(251, 251, 251);
+}
+
+.add-button {
+  display: block;
+  font-size: 60px;
+  margin: auto;
+  cursor: pointer;
+  height: 60px;
+  color: #999;
+  width: 60px;
+}
+
+.add-text {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 16px;
+  height: 16px;
+  color: #999;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+

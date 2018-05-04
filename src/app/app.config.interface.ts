@@ -5,6 +5,7 @@ export interface IAppConfig {
   logEndpoint: string;
   pluginEndpoint: string;
   uploadEndpoint: string;
+  websEndpoint: string;
   requestRetry: number;
   uploadRetry: number;
   uploadChunkRetry: number;

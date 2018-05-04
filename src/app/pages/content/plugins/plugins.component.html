@@ -1,0 +1,23 @@
+<div fxLayout="column" fxFill>
+  <ng-masonry-grid fxFlex
+                   [useAnimation]="false"
+                   [useImagesLoaded]="true">
+    <ng-masonry-grid-item id="{{'masonry-item-' + i}}" *ngFor="let item of items; let i = index">
+      <mat-card *ngIf="item.type === 'add'" (click)="installPlugin()" class="install-plugin-card" fxLayout="column" fxLayoutAlign="center center">
+        <div>
+          <mat-icon class="add-button">
+            add
+          </mat-icon>
+          <em class="add-text">Install Plugin</em>
+        </div>
+      </mat-card>
+      <app-plugin-card *ngIf="item.type === 'plugin'" [media]="item.value"></app-plugin-card>
+    </ng-masonry-grid-item>
+  </ng-masonry-grid>
+  <mat-paginator [length]="resultsLength"
+                 [pageSize]="20"
+                 [pageSizeOptions]="[20, 40]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>
+
