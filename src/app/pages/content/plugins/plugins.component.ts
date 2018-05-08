@@ -1,10 +1,6 @@
 import {AfterViewInit, Component, EventEmitter, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {merge} from 'rxjs/observable/merge';
-import {of} from 'rxjs/observable/of';
-import {catchError} from 'rxjs/operators/catchError';
-import {switchMap} from 'rxjs/operators/switchMap';
-import {map} from 'rxjs/operators/map';
-import {startWith} from 'rxjs/operators/startWith';
+import {merge, of} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {PluginService} from '../../../service/plugin/plugin.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator} from '@angular/material';
@@ -137,31 +133,34 @@ export class PluginsComponent implements OnInit, AfterViewInit {
               })
             );
         }),
-      )
-      .map(data => {
-        const pcm = [];
-        pcm.push(<Item>{
-          type: 'add',
-        });
-        for (const v of data) {
-          pcm.push({
-            type: 'plugin',
-            value: <PluginCardMedia>{
-              title: v.name,
-              version: v.version,
-              content: v.desc,
-              coverUrl: this.config.websEndpoint + '/' + v.name + '/' + v.cover,
-              onClickDelete: () => {
-                console.log(v.name);
-              },
-              onClick: () => {
-                this.goToPluginPage(v.name);
-              }
-            }
+        map(data => {
+          const pcm = [];
+          pcm.push(<Item>{
+            type: 'add',
           });
-        }
-        return pcm;
-      })
+          for (const v of data) {
+            pcm.push({
+              type: 'plugin',
+              value: <PluginCardMedia>{
+                title: v.name,
+                version: v.version,
+                content: v.desc,
+                coverUrl: this.config.websEndpoint + '/' + v.name + '/' + v.cover,
+                onClickDelete: () => {
+                  this.pluginService.listPluginCommand('HelloWord').subscribe(commands => {
+                    console.log(commands);
+                  });
+                  console.log(v.name);
+                },
+                onClick: () => {
+                  this.goToPluginPage(v.name);
+                }
+              }
+            });
+          }
+          return pcm;
+        })
+      )
       .subscribe(data => {
         this.items = data;
       });

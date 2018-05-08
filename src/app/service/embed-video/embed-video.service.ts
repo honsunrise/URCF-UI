@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
+import {catchError, map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
+import {of} from 'rxjs';
 
 @Injectable()
 export class EmbedVideoService {
@@ -166,15 +166,18 @@ export class EmbedVideoService {
 
     options.image = this.validVimeoOptions.indexOf(options.image) >= 0 ? options.image : 'thumbnail_large';
 
-    return this.http.get('https://vimeo.com/api/v2/video/' + id + '.json')
-      .map(res => {
+    return this.http.get('https://vimeo.com/api/v2/video/' + id + '.json').pipe(
+      map(res => {
         return {
           'link': res[0][options.image],
           'html': '<img src="' + res[0][options.image] + '"/>'
         };
+      }),
+      catchError(error => {
+        console.log(error);
+        return of({});
       })
-      .toPromise()
-      .catch(error => console.log(error));
+    ).toPromise();
   }
 
   private embed_dailymotion_image(id: string, options?: any): any {
@@ -187,14 +190,19 @@ export class EmbedVideoService {
     options.image = this.validDailyMotionOptions.indexOf(options.image) >= 0 ? options.image : 'thumbnail_480_url';
 
     return this.http.get('https://api.dailymotion.com/video/' + id + '?fields=' + options.image)
-      .map(res => {
-        return {
-          'link': res[options.image],
-          'html': '<img src="' + res[options.image] + '"/>'
-        };
-      })
-      .toPromise()
-      .catch(error => console.log(error));
+      .pipe(
+        map(res => {
+          return {
+            'link': res[options.image],
+            'html': '<img src="' + res[options.image] + '"/>'
+          };
+        }),
+        catchError(error => {
+          console.log(error);
+          return of({});
+        })
+      )
+      .toPromise();
   }
 
   private parseOptions(options: any): any {

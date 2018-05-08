@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {APP_CONFIG, IAppConfig} from '../../app.config.interface';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs';
 import {LogWithTotal} from '../domain/log';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class LogService {
     });
   }
 
-  clean(id?: number): Observable<boolean> {
-    return this.http.delete(this.config.logEndpoint + '/' + id).map(() => true);
+  clean(id?: number): Observable<Object> {
+    return this.http.delete(this.config.logEndpoint + '/' + id);
   }
 }

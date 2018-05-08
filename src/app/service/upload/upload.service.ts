@@ -1,12 +1,11 @@
 import {Inject, Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Rx';
+import {Observable, Observer, Subscription} from 'rxjs';
+import {retry} from 'rxjs/operators';
 import {APP_CONFIG, IAppConfig} from '../../app.config.interface';
 import {HttpClient, HttpEvent, HttpEventType, HttpParams} from '@angular/common/http';
 import {UploadToken} from '../domain/uploadToken';
 import {NextChunk} from '../domain/nextChunk';
 import {FileUploader} from './file-uploader.class';
-import {Observer} from 'rxjs/Observer';
-import {Subscription} from 'rxjs/Subscription';
 
 @Injectable()
 export class UploadService {
@@ -15,7 +14,7 @@ export class UploadService {
     return this.http.get<UploadToken>(this.config.uploadEndpoint + '/base/upload', {
       params: new HttpParams().set('name', file.name).set('filesize', file.size + ''),
       withCredentials: true
-    }).retry(this.config.requestRetry);
+    }).pipe(retry(this.config.requestRetry));
   }
 
   private uploadFile(token: UploadToken, file: File): Observable<HttpEvent<any>> {
@@ -77,6 +76,6 @@ export class UploadService {
         responseType: 'json',
         withCredentials: true,
         reportProgress: true
-      }).retry(this.config.uploadChunkRetry);
+      }).pipe(retry(this.config.uploadChunkRetry));
   }
 }

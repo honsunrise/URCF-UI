@@ -8,14 +8,14 @@ export const AppRoutes: Routes = [{
   component: MainLayoutComponent,
   children: [{
     path: '',
-    loadChildren: 'app/pages/content/content.module#ContentModule'
+    loadChildren: 'src/app/pages/content/content.module#ContentModule'
   }]
 }, {
   path: 'session',
   component: AuthLayoutComponent,
   children: [{
     path: '',
-    loadChildren: 'app/pages/session/session.module#SessionModule'
+    loadChildren: 'src/app/pages/session/session.module#SessionModule'
   }]
 }, {
   path: '**',

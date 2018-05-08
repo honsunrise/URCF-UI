@@ -13,6 +13,9 @@
  *
  * Learn more in https://angular.io/docs/ts/latest/guide/browser-support.html
  */
+// Add global to window, assigning the value of window itself.
+(window as any).global = window;
+
 /***************************************************************************************************
  * BROWSER POLYFILLS
  */
@@ -44,12 +47,3 @@ import 'core-js/es7/reflect';
  * Zone JS is required by Angular itself.
  */
 import 'zone.js/dist/zone'; // Included with Angular CLI.
-/***************************************************************************************************
- * APPLICATION IMPORTS
- */
-/**
- * Date, currency, decimal and percent pipes.
- * Needed for: All but Chrome, Firefox, Edge, IE11 and Safari 10
- */
-import 'intl';
-import 'intl/locale-data/jsonp/en.js';

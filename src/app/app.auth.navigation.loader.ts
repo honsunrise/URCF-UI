@@ -1,5 +1,5 @@
 import {NavigationLoader} from './widgets/navigation/navigation.loader';
-import {Observable} from 'rxjs/Rx';
+import {Observable, of} from 'rxjs';
 import {AuthService} from './service/auth/auth.service';
 
 export class AuthNavigationLoader implements NavigationLoader {
@@ -9,7 +9,7 @@ export class AuthNavigationLoader implements NavigationLoader {
 
   getItems(): Observable<any> {
     if (this.authService.checkLogin()) {
-      return Observable.of([
+      return of([
         {
           'id': 'dashboard',
           'title': 'Dashboard',
@@ -61,7 +61,7 @@ export class AuthNavigationLoader implements NavigationLoader {
         }
       ]);
     } else {
-      return Observable.of([]);
+      return of([]);
     }
   }
 }

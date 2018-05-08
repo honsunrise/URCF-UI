@@ -3,6 +3,7 @@ import {NavigationEnd, Router} from '@angular/router';
 import {NavigationGroup} from '../../navigation.model';
 import {APP_ANIMATIONS} from '../../../../animations';
 import {NavigationService} from '../../navigation.service';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'nav-vertical-collapse',
@@ -51,9 +52,11 @@ export class NavVerticalCollapseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sub = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event) => {
-      this.checkOpenLinks();
-    });
+    this.sub = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        this.checkOpenLinks();
+      });
   }
 
   ngOnDestroy(): void {

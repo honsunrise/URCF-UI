@@ -23,12 +23,12 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/videogular2/fonts/videogular.css",
-              "./node_modules/material-design-icons/iconfont/material-icons.css",
-              "assets/styles/app.scss"
+              "node_modules/videogular2/fonts/videogular.css",
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "src/assets/styles/app.scss"
             ],
             "scripts": [
-              "./node_modules/imagesloaded/imagesloaded.pkgd.js"
+              "node_modules/imagesloaded/imagesloaded.pkgd.js"
             ]
           },
           "configurations": {
@@ -56,6 +56,7 @@
                   "with": "src/environments/environment.hmr.ts"
                 }
               ],
+              "hmr": true,
               "optimization": false,
               "outputHashing": "all",
               "sourceMap": true,
@@ -99,7 +100,7 @@
             "styles": [
               "./node_modules/videogular2/fonts/videogular.css",
               "./node_modules/material-design-icons/iconfont/material-icons.css",
-              "assets/styles/app.scss"
+              "src/assets/styles/app.scss"
             ],
             "scripts": [
               "./node_modules/imagesloaded/imagesloaded.pkgd.js"

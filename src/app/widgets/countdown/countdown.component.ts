@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
-import {Observable} from 'rxjs/Rx';
+import {interval} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-countdown',
@@ -27,21 +28,22 @@ export class CountdownComponent implements OnInit {
     let diff = eventDate.diff(currDate, 'seconds');
 
     const countDown =
-      Observable
-        .interval(1000)
-        .map(value => {
-          return diff = diff - 1;
-        })
-        .map(value => {
-          const timeLeft = moment.duration(value, 'seconds');
+      interval(1000)
+        .pipe(
+          map(value => {
+            return diff = diff - 1;
+          }),
+          map(value => {
+            const timeLeft = moment.duration(value, 'seconds');
 
-          return {
-            days: timeLeft.asDays().toFixed(0),
-            hours: timeLeft.hours(),
-            minutes: timeLeft.minutes(),
-            seconds: timeLeft.seconds()
-          };
-        });
+            return {
+              days: timeLeft.asDays().toFixed(0),
+              hours: timeLeft.hours(),
+              minutes: timeLeft.minutes(),
+              seconds: timeLeft.seconds()
+            };
+          })
+        );
 
     countDown.subscribe(value => {
       this.countdown = value;

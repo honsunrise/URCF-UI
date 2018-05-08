@@ -1,4 +1,4 @@
-import {Observable} from 'rxjs/Rx';
+import {Observable, of} from 'rxjs';
 import {Injectable} from '@angular/core';
 
 export abstract class NavigationLoader {
@@ -11,6 +11,6 @@ export abstract class NavigationLoader {
 @Injectable()
 export class NavigationFakeLoader extends NavigationLoader {
   getItems(): Observable<any> {
-    return Observable.of([]);
+    return of([]);
   }
 }

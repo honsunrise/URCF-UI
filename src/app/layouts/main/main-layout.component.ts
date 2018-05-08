@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
+import {Subscription} from 'rxjs';
+import {filter} from 'rxjs/operators';
 import {AuthService} from '../../service/auth/auth.service';
 
 @Component({
@@ -22,7 +23,8 @@ export class MainLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.url = this.router.url;
-    this._router = this.router.events.filter(event => event instanceof NavigationEnd)
+    this._router = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         document.querySelector('.app-inner .mat-sidenav-content').scrollTop = 0;
         this.url = event.url;

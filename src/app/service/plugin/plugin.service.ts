@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {APP_CONFIG, IAppConfig} from '../../app.config.interface';
 import {HttpClient, HttpParams, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs';
 import {PluginsWithTotal} from '../domain/plugin';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class PluginService {
     const params = new HttpParams()
       .set('page', page.toString(10))
       .set('size', size.toString(10));
-    return this.http.get<PluginsWithTotal>(this.config.pluginEndpoint + '/list', {
+    return this.http.get<PluginsWithTotal>(this.config.pluginEndpoint, {
       params: params,
     });
   }
@@ -26,9 +26,13 @@ export class PluginService {
     formData.append('file', fileItem, fileItem.name);
     formData.append('flag', flag);
 
-    const req = new HttpRequest('POST', this.config.pluginEndpoint + '/', formData, {
+    const req = new HttpRequest('POST', this.config.pluginEndpoint, formData, {
       reportProgress: true
     });
     return this.http.request(req);
+  }
+
+  listPluginCommand(pluginName: string): Observable<string[]> {
+    return this.http.get<string[]>(this.config.pluginEndpoint + '/' + pluginName + '/commands');
   }
 }
