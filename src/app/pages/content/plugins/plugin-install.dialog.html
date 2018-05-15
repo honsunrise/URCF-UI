@@ -1,11 +1,10 @@
 <h1 mat-dialog-title>Plugin install wizard</h1>
-<form (ngSubmit)="handleSubmit($event, uplaodForm)" #uplaodForm="ngForm" [formGroup]="formGroup">
-  <div mat-dialog-content>
-    <ng-template matStepLabel>Choice your plugin file</ng-template>
+<div mat-dialog-content>
+  <form [formGroup]="formGroup">
     <input type="file" formControlName="file" id="file" (change)="fileSelected($event)">
-  </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="onCancelClick()">Cancel</button>
-    <button mat-button type="submit" [disabled]='formGroup.invalid'>Submit</button>
-  </div>
-</form>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button (click)="handleSubmit(uplaodForm)" [disabled]='formGroup.invalid'>Submit</button>
+</div>

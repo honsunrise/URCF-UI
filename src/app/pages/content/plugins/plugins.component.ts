@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, EventEmitter, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {merge, of} from 'rxjs';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import {from, merge, of, range} from 'rxjs';
+import {catchError, flatMap, map, startWith, switchMap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {PluginService} from '../../../service/plugin/plugin.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator} from '@angular/material';
@@ -58,18 +58,14 @@ export class PluginInstallDialogComponent implements OnInit, OnDestroy {
     }
   }
 
-  handleSubmit(event, ngForm) {
-    console.dir(this.formGroup);
-    event.preventDefault();
-    if (ngForm.submitted) {
-      this.fileUploadSub = this.pluginService.installPlugin(this.uploadFile, 'none').subscribe(
+  handleSubmit() {
+    this.formGroup.reset();
+    this.fileUploadSub = this.pluginService.installPlugin(this.uploadFile, 'none')
+      .subscribe(
         this.handleProgress,
         error => {
           console.log('Server error' + error);
         });
-
-      ngForm.resetForm({});
-    }
   }
 
   onCancelClick(): void {
