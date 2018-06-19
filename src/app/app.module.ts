@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -44,6 +44,7 @@ export function createNavigationLoader(authService: AuthService) {
     RouterModule.forRoot(AppRoutes),
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
