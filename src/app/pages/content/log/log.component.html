@@ -37,19 +37,19 @@
           <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="message">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Message </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.message}} </mat-cell>
-        </ng-container>
-
         <ng-container matColumnDef="level">
           <mat-header-cell *matHeaderCellDef mat-sort-header> level </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.level}} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="message">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Message </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.message}} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="create_time">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Time </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.create_date}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.create_time}} </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
