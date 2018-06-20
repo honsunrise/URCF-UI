@@ -1,0 +1,34 @@
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  height: 100%;
+
+  .no-messages-text {
+    line-height: 50px;
+    font-size: 24px;
+    font-weight: 300;
+  }
+
+  .header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .mat-table {
+    overflow: auto;
+    height: 100%;
+  }
+
+  .mat-column-select {
+    overflow: visible;
+  }
+}

@@ -10,6 +10,7 @@ import {JWT_OPTIONS, JwtModule} from '@auth0/angular-jwt';
 import {AuthService} from './auth/auth.service';
 import {AuthGuard} from './auth/auth.guard.service';
 import {PluginService} from './plugin/plugin.service';
+import {ProcessesService} from './processes/processes.service';
 
 export function jwtOptionsFactory() {
   return {
@@ -32,6 +33,7 @@ export function jwtOptionsFactory() {
   providers: [
     LogService,
     PluginService,
+    ProcessesService,
     AccountService,
     EmbedVideoService,
     CopierService,

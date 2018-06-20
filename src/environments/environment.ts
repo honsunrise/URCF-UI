@@ -13,6 +13,7 @@ export const environment = {
 export const APP_DI_CONFIG: IAppConfig = {
   loginEndpoint: 'http://127.0.0.1:8080/v1/uaa',
   logEndpoint: 'http://127.0.0.1:8080/v1/log',
+  processesEndpoint: 'http://127.0.0.1:8080/v1/processes',
   pluginEndpoint: 'http://127.0.0.1:8080/v1/plugins',
   websEndpoint: 'http://127.0.0.1:8081',
   uploadEndpoint: 'http://127.0.0.1:8080',

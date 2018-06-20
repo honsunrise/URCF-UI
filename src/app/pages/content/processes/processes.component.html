@@ -1,3 +1,69 @@
-<p>
-  blank works!
-</p>
+<div fxLayout="column" fxFill>
+  <mat-card fxLayout="column" fxFlex>
+    <div *ngIf="dataSource.data.length === 0 && !isLoadingResults">
+      <span class="no-messages-text">There are no logs!</span>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <div class="header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+      <mat-table #table [dataSource]="dataSource" matSort matSortActive="create_time" matSortDisableClear
+                 matSortDirection="desc" perfectScrollbar fxFlex>
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(element) : null"
+                          [checked]="selection.isSelected(element)">
+            </mat-checkbox>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="pid">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> PID </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.pid}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="cmd">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Cmd </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.cmd}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="args">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Args </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.args}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="restart_count">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> RestartCount </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.statistics.restart_count}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="startup_time">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> StartUpTime </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.statistics.startup_time}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </mat-card>
+</div>
