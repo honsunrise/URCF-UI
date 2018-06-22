@@ -2,7 +2,7 @@ import {inject, TestBed} from '@angular/core/testing';
 
 import {LogService} from './log.service';
 
-describe('ProcessesService', () => {
+describe('NetfilterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [LogService]

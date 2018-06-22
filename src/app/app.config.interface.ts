@@ -4,6 +4,7 @@ export interface IAppConfig {
   loginEndpoint: string;
   logEndpoint: string;
   processesEndpoint: string;
+  netfilterEndpoint: string;
   pluginEndpoint: string;
   uploadEndpoint: string;
   websEndpoint: string;

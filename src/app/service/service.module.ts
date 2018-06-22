@@ -11,6 +11,7 @@ import {AuthService} from './auth/auth.service';
 import {AuthGuard} from './auth/auth.guard.service';
 import {PluginService} from './plugin/plugin.service';
 import {ProcessesService} from './processes/processes.service';
+import {NetfilterService} from './netfilter/netfilter.service';
 
 export function jwtOptionsFactory() {
   return {
@@ -34,6 +35,7 @@ export function jwtOptionsFactory() {
     LogService,
     PluginService,
     ProcessesService,
+    NetfilterService,
     AccountService,
     EmbedVideoService,
     CopierService,
